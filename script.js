@@ -5,8 +5,6 @@ let submitButton = document.querySelector("#submit");
 let startButton = document.querySelector("#start");
 let scoreName = document.querySelector("#name");
 let responses = document.querySelector("#response");
-let asksQues = document.querySelector("asks");
-let answerQues = document.querySelector("answer");
 
 let questionNumber = 0;
 let time = 75;
@@ -22,13 +20,13 @@ function startQuiz() {
 
   timer.textContent = time;
 
-  getQuestions();
+  getQuestion();
 }
 
 startButton.onclick = startQuiz;
 
 function getQuestion() {
-  let currentQuestion = asks[currentQuestionIndex];
+  let currentQuestion = asks[questionNumber];
   let asksEl = document.getElementById("asksQuestion");
   asksEl.textContent = currentQuestion.ask;
 
@@ -45,7 +43,7 @@ function getQuestion() {
 }
 
 function questionClick() {
-  if (this.value !== asks[currentQuestionIndex].answer) {
+  if (this.value !== asks[questionNumber].answer) {
     time -= 10;
 
     if (time < 0) {
@@ -57,10 +55,27 @@ function questionClick() {
     response.textContent = "Yay! You got it!";
   }
 
-  currentQuestionIndex++;
-  if (currentQuestionIndex === questions.length) {
+  questionNumber++;
+  if (questionNumber === questions.length) {
     quizEnd();
   } else {
     getQuestion();
   }
+}
+
+function quizEnd() {
+    clearInterval(timer);
+    let finishedQuiz = document.getElementById("finished");
+    finishedQuiz.removeAttribute("class");
+    let finishedScore = document.getElementById("finalScore");
+    finishedScore.setAttribute("class", "hide");
+}
+
+function clockCounter() {
+    time--;
+    timer.textContent = time;
+
+    if(time < 0) {
+        quizEnd();
+    }
 }

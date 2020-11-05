@@ -1,3 +1,52 @@
 body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.wrapper {
+    max-width: 500px;
+    text-align: center;
+    margin: auto;
+
+}
+
+.hide {
+    display: none;
+}
+
+
+.scores {
+    position: absolute;
+    left: 25px;
+}
+
+.timer {
+    position: absolute;
+    right: 25px;
+}
+
+#response {
+    font-stretch: expanded;
+    font-size: 150%;
+}
+
+a:hover {
+    color: #8c8c99;
+}
+
+button {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(62, 15, 82);
+    color: white;
+}
+
+button:hover {
+    background-color: mediumorchid;
+}
+
+.choices button {
+    display: block;
+}
+
+input[type="text"] {
+    font-size: 100%;
+}
