@@ -14,7 +14,7 @@ function startQuiz() {
   let startPageEl = document.getElementById("startPage");
   startPageEl.setAttribute("class", "hide");
 
-  questionsSection.removeAttribute("class");
+//   questionsSection.removeAttribute("class");
 
   timeClock = setInterval(clockCounter, 1000);
 
@@ -79,3 +79,21 @@ function clockCounter() {
         quizEnd();
     }
 }
+
+function calcHighScore() {
+    let name = scoreName.value.trim();
+
+    if (name !== "") {
+        let highScores = JSON.parse(localStorage.getItem("highscores")) || [];
+        let newScore = {
+            score: time,
+            name: name,
+        };
+        highScores.push(newScore);
+        localStorage.setItem("highscores", JSON.stringify(highScores));
+
+        location.href = "score.html";
+    }
+}
+submitButton.onclick = calcHighScore;
+startButton.onclick = startQuiz;

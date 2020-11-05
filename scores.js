@@ -5,12 +5,12 @@ function showHighScores() {
         let liScore = document.createElement("li")
         liScore.textContent = score.name + " - " + score.score;
 
-        let olScore = document.getElementById("highScores");
+        let olScore = document.getElementById("highscores");
         olScore.appendChild(liScore);
     });
 }
 function clearScores() {
-    localStorage.removeItem("highScores");
+    localStorage.removeItem("highscores");
     location.reload();
 }
 
