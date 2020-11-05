@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Quiz Challenge</title>
+
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div id="startPage" class="start">
+            <h1>Coding Quiz Challenge</h1>
+            <p>
+                You have been challenged to complete the Coding Quiz Challenge!
+                It's a multiple choice quiz and you have 90 seconds to complete it.
+                Be aware! If you answer a question incorrectly, you will be penalized
+                10 seconds! Good luck!
+            </p>
+            <button id="start">Start Quiz</button>
+        </div>
+
+        <div id="questions" class="hide">
+            <h2 id="askQuestions"></h2>
+            <div id="choices" class="choices"></div>
+        </div>
+
+        <div id="finished" class="hide">
+            <h2>Congratulations! You've completed the quiz!</h2>
+            <h3>Your final score is <span id="finalScore">0</span></h3>
+            <h3>Enter your name: <input type="text" id="name" max="3">
+                <button id="submit">Submit</button>
+            </h3>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
