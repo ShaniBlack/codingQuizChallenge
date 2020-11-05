@@ -27,7 +27,7 @@ startButton.onclick = startQuiz;
 
 function getQuestion() {
   let currentQuestion = asks[questionNumber];
-  let asksEl = document.getElementById("asksQuestion");
+  let asksEl = document.getElementById("askQuestions");
   asksEl.textContent = currentQuestion.ask;
 
   choicesDiv.innerHTML = "";
