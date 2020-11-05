@@ -1,4 +1,4 @@
-let questionsSection = document.querySelector("#questions");
+let questionsSection = document.querySelector("#questionsSection");
 let timer = document.querySelector("#time");
 let choicesDiv = document.querySelector("#choices");
 let submitButton = document.querySelector("#submit");
@@ -6,7 +6,7 @@ let startButton = document.querySelector("#start");
 let scoreName = document.querySelector("#name");
 let responses = document.querySelector("#response");
 
-let questionNumber = 0;
+let questionNumber = [0];
 let time = 75;
 let timeClock;
 
@@ -14,7 +14,7 @@ function startQuiz() {
   let startPageEl = document.getElementById("startPage");
   startPageEl.setAttribute("class", "hide");
 
-//   questionsSection.removeAttribute("class");
+  // document.questionsSection.removeAttribute("class");
 
   timeClock = setInterval(clockCounter, 1000);
 
@@ -26,24 +26,36 @@ function startQuiz() {
 startButton.onclick = startQuiz;
 
 function getQuestion() {
-  let currentQuestion = asks[questionNumber];
-  let asksEl = document.getElementById("askQuestions");
-  asksEl.textContent = currentQuestion.ask;
-
-  choicesDiv.innerHTML = "";
-  currentQuestion.choices.forEach(function (choice, i) {
-    let choicePick = document.createElement("button");
-    choicePick.setAttribute("class", "choice");
-    choicePick.setAttribute("value", choice);
-
-    choicePick.textContent = i + 1 + ". " + choice;
-    choicePick.onclick = questionClick;
-    choicesDiv.appendChild(choicePick);
-  });
-}
-
-function questionClick() {
-  if (this.value !== asks[questionNumber].answer) {
+      // this is to get current question object from array
+    let currentQuestion = questions[questionNumber];
+  
+    // need to update title with current question
+    let questionsAsk = document.getElementById("askQuestions");
+    questionsAsk.textContent = currentQuestion.question;
+  
+    // clear out any old question choices
+    choicesDiv.innerHTML = "";
+  
+    // loop over choices to the questions
+    currentQuestion.choices.forEach(function (choice, i) {
+      // create new button for each choice
+      let choiceOption = document.createElement("button");
+      choiceOption.setAttribute("class", "choice");
+      choiceOption.setAttribute("value", choice);
+  
+      choiceOption.textContent = i + 1 + ". " + choice;
+  
+      // attach click event listener to each choice
+      choiceOption.onclick = nextQuestion;
+  
+      // display on the page
+      choicesDiv.appendChild(choiceOption);
+      
+    });
+  }
+ 
+function questionCheck() {
+  if (this.value !== questions[questionNumber].answer) {
     time -= 10;
 
     if (time < 0) {
@@ -54,6 +66,11 @@ function questionClick() {
   } else {
     response.textContent = "Yay! You got it!";
   }
+
+  responses.setAttribute("class", "response");
+  setTimeout(function () {
+    responses.setAttribute("class", "response hide");
+  }, 1000);
 
   questionNumber++;
   if (questionNumber === questions.length) {
