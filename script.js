@@ -5,3 +5,12 @@ let submitButton = document.querySelector("#submit");
 let startButton = document.querySelector("#start");
 let scoreName = document.querySelector("#name");
 let responses = document.querySelector("#response");
+
+function startQuiz() {
+    let startPageEl = document.getElementById("startPage");
+    startPageEl.setAttribute("class", "hide");
+
+    questionsAsked.removeAttribute("class");
+
+    
+}
